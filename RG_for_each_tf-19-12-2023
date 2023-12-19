@@ -1,0 +1,18 @@
+#resource block
+
+resource "local_sensitive_file" "name" {
+    filename = each.value
+    content = var.content
+    for_each = var.users
+}
+---------------------------------------------------------------
+#variables.tf
+
+variable "users" {
+    type = set(string)
+    default = [ "/root/user10", "/root/user11", "/root/user12"]
+}
+variable "content" {
+    default = "password: S3cr3tP@ssw0rd"
+  
+}
