@@ -1,0 +1,18 @@
+#resource block
+
+resource "local_sensitive_file" "name" {
+    filename =var.users[count.index]
+    content = var.content
+    count=length(var.users)
+}
+----------------------------------------------------------
+#variables.tf
+
+variable "users" {
+    type = list
+    default = ["/root/user-data","/root/user1-data","/root/user2-data"]
+}
+variable "content" {
+    default = "password: S3cr3tP@ssw0rd"
+  
+}
